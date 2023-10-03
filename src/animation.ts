@@ -75,6 +75,19 @@ export class FunctionAnimation extends PlayerAnimation {
 	}
 }
 
+export class BoundleAnimation extends PlayerAnimation {
+	protected animate(player: PlayerObject): void {
+		// Multiply by animation's natural speed
+		const t = this.progress * 2;
+
+		player.position.y = Math.cos(t * 2);
+		// Dodging when running
+		player.position.x = Math.cos(t) * 0.15;
+		// Slightly tilting when running
+		player.rotation.z = Math.cos(t + Math.PI) * 0.01;
+
+	}
+}
 export class IdleAnimation extends PlayerAnimation {
 	protected animate(player: PlayerObject): void {
 		// Multiply by animation's natural speed
